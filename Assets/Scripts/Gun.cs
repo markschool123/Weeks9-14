@@ -20,7 +20,10 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        mousePos.z = 0;
+        Vector2 direction = mousePos - transform.position;
+        transform.up = direction;
     }
 
 
