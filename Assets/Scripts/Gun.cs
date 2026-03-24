@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float ammo;
     public float maxAmmo = 5;
-    public UnityEvent onFire;
+   
     public bool isReloading;
     public float reloadTime = 3;
     public bool isShooting;
@@ -26,11 +26,12 @@ public class Gun : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-
-        Debug.Log("ATTACK PRESSED");
+       
 
         if (context.performed)
         {
+            Debug.Log("FIRE!");
+
             Shoot();
         }
 
@@ -44,7 +45,7 @@ public class Gun : MonoBehaviour
         {
             isShooting = true;
             ammo--;
-            onFire.Invoke();
+          
 
             if (ammo == 0)
             {
