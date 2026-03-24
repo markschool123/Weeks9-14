@@ -8,9 +8,8 @@ public class Gun : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float ammo;
     public float maxAmmo = 5;
-   
     public bool isReloading;
-    public float reloadTime = 3;
+    float reloadTime = 3;
     public bool isShooting;
     void Start()
     {
