@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
     public bool isReloading;
     float reloadTime = 3;
     public bool isShooting;
+    public UnityEvent onFire;
+
     void Start()
     {
         ammo = maxAmmo;
@@ -32,7 +34,7 @@ public class Gun : MonoBehaviour
 
         if (context.performed)
         {
-            Debug.Log("FIRE!");
+         
 
             Shoot();
         }
@@ -47,7 +49,8 @@ public class Gun : MonoBehaviour
         {
             isShooting = true;
             ammo--;
-          
+            onFire.Invoke();    
+            Debug.Log("FIRE!");
 
             if (ammo == 0)
             {
