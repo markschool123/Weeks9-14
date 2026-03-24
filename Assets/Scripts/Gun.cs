@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public int ammo;
-    public int maxAmmo;     
-    public UnityEvent OnFire;
+    public float ammo;
+    public float maxAmmo = 5;
+    public UnityEvent onFire;
     public bool isReloading;
     public float reloadTime = 3;
+    public bool isShooting;
     void Start()
     {
         ammo = maxAmmo;
@@ -22,15 +23,41 @@ public class Gun : MonoBehaviour
         
     }
 
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+
+        Debug.Log("ATTACK PRESSED");
+
+        if (context.performed)
+        {
+            Shoot();
+        }
+
+
+    }
+
+
     public void Shoot()
     {
-        ammo--;
-        OnFire.Invoke();
-
-        if (ammo==0)
+        if (!isReloading && ammo > 0)
         {
-            StartCoroutine(Reloading());
+            isShooting = true;
+            ammo--;
+            onFire.Invoke();
+
+            if (ammo == 0)
+            {
+                StartCoroutine(Reloading());
+                isShooting=false;
+            }
+            else
+            {
+                isShooting = false;
+            }
+
         }
+
     }
 
     IEnumerator Reloading()
@@ -43,10 +70,7 @@ public class Gun : MonoBehaviour
     }
 
     
-    public void OnShoot(InputAction.CallbackContext context)
-    {
-
-    }
+   
 
 
 
