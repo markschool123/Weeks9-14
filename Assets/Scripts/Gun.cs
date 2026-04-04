@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour
     float reloadTime = 3;
     public bool isShooting;
     public UnityEvent onFire;
+    public Vector2 movement;
+    float speed = 5;
 
     void Start()
     {
@@ -25,6 +27,13 @@ public class Gun : MonoBehaviour
         mousePos.z = 0;
         Vector2 direction = mousePos - transform.position;
         transform.up = direction;
+
+        transform.position += (Vector3)movement * speed * Time.deltaTime;
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        movement = context.ReadValue<Vector2>();
     }
 
 

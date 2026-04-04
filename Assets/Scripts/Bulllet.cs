@@ -9,8 +9,7 @@ public class Bulllet : MonoBehaviour
    
     public GameObject bulletPrefab;
     public Transform pointer;
-    float speed = 5f;
-
+   
     void Start()
     {
         
@@ -27,5 +26,6 @@ public class Bulllet : MonoBehaviour
     public void Shoot()
     {
         Instantiate(bulletPrefab, pointer.position, pointer.rotation);
+       
     }
 }
