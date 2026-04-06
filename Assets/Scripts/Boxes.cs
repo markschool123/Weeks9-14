@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Boxes : MonoBehaviour
 {
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     public SpriteRenderer box;
     public SpriteRenderer box1;
     public SpriteRenderer box2;
     public SpriteRenderer box3;
     public SpriteRenderer player;
-    public bool hit = false;
     public Gun gun;
+    public UnityEvent onPickup;
+    public UnityEvent onSpeedPickup;
     void Start()
     {
         
@@ -26,14 +28,31 @@ public class Boxes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (player.bounds.Intersects(box.bounds) || player.bounds.Intersects(box1.bounds) || player.bounds.Intersects(box2.bounds) || player.bounds.Intersects(box3.bounds))
+        
+       if (box != null && player.bounds.Intersects(box.bounds))
         {
-            if (!hit)
-            {
-                hit = true;
-                gun.ammo += 1;
-            }
+            onPickup.Invoke();
+            Destroy(box.gameObject);
+            
+  
+        }
+        if (box1 != null && player.bounds.Intersects(box1.bounds))
+        {
+            onSpeedPickup.Invoke();
+            Destroy(box1.gameObject);
+
+        }
+        if (box2 != null && player.bounds.Intersects(box2.bounds))
+        {
+            onPickup.Invoke();
+            Destroy(box2.gameObject);
+
+        }
+        if (box3 != null &&  player.bounds.Intersects(box3.bounds))
+        {
+            onSpeedPickup.Invoke();
+            Destroy(box3.gameObject);
+
         }
 
 
@@ -41,7 +60,15 @@ public class Boxes : MonoBehaviour
 
 
 
+    }
+    public void AmmoReload()
+    {
+        gun.ammo += 1;
+        
+    }
 
-
+    public void SpeedBoost()
+    {
+        gun.speed += 1; ;
     }
 }

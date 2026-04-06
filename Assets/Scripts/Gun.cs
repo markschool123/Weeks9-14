@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
     public bool isShooting;
     public UnityEvent onFire;
     public Vector2 movement;
-    float speed = 5;
+    public float speed = 5;
 
     void Start()
     {
