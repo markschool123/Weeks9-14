@@ -10,7 +10,7 @@ public class Boxes : MonoBehaviour
 {
 
 
-    
+    //references each box sprite renderer for collisions. Unity event for ammo and speed boost
     public SpriteRenderer box;
     public SpriteRenderer box1;
     public SpriteRenderer box2;
@@ -28,7 +28,7 @@ public class Boxes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // check if the player is touching the box, invoke the event. null makes sure that the other boxes can be picked up as well.
        if (box != null && player.bounds.Intersects(box.bounds))
         {
             onPickup.Invoke();

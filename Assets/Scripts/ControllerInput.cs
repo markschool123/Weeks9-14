@@ -19,22 +19,9 @@ public class ControllerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = movement;
+    
     }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        movement = context.ReadValue<Vector2>();
-    }
-     public void OnPoint(InputAction.CallbackContext context)
-    {
-        movement = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
-    }
-
-    public void ChangeSprite()
-    {
-        
-    }
-
+  
+    
 }
 

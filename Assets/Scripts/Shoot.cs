@@ -13,7 +13,9 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // move the bullet in the opposite direction facing up
         transform.position += -transform.up * speed * Time.deltaTime;
+        //delete the bullet after 4 seconds
         Destroy(bulletPrefab, 4f);
 
     }

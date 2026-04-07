@@ -6,7 +6,7 @@ public class Bulllet : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
  
-   
+   // get a reference for the empty, get bullet prefab. 
     public GameObject bulletPrefab;
     public Transform pointer;
    
@@ -25,6 +25,7 @@ public class Bulllet : MonoBehaviour
 
     public void Shoot()
     {
+        //spawn the bullet at the location of the empty. 
         Instantiate(bulletPrefab, pointer.position, pointer.rotation);
        
     }
